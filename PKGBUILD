@@ -10,7 +10,7 @@ url="https://github.com/ihatethefrench/appendage"
 license=('GPL3')
 source=("git+$url")
 sha256sums=('SKIP')
-makedepends=('cargo')
+makedepends=('cargo' 'git')
 
 prepare() {
     cd "$srcdir/$pkgname"
