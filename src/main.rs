@@ -31,13 +31,13 @@ fn main() {
 
     if !args.no_newline {
         write_to_file(&args.file, "\n", &args.verbose).unwrap_or_else(|err| {
-            strs::error(&format!("Could not write newline to file, {}", err));
+            strs::error(&format!("Could not write to file, {}", err));
             std::process::exit(1);
         });
     };
 
     write_to_file(&args.file, &args.text, &args.verbose).unwrap_or_else(|err| {
-        strs::error(&format!("Could not write text to file, {}", err));
+        strs::error(&format!("Could not write to file, {}", err));
         std::process::exit(1);
     });
 
