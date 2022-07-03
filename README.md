@@ -7,7 +7,7 @@ Glad you've asked, `appendage` is a tool for appending text to files. That's all
 
 ### How do I use it?
 
-Run `appendage <file> <text>`. It's that simple
+Run `apd <file> <text>`. It's that simple
 
 If you need superuser, just run it with sudo, no need for any pipes or any other garbage, just write what you want to write, to the file you want to write to
 
@@ -34,6 +34,6 @@ As `appendage` is a simple program, this is literally all that can go wrong.
 
 The only possible error can be that it couldn't append to the file, and in that case it'll print out the corresponding OS Error.
 
-Everything else is user error and on you.
+Everything else is user error and your fault :)
 
 ### Enjoy!
