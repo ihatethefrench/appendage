@@ -4,6 +4,7 @@ description = "Append text to files without all of the hassle"
 version = "0.1.0"
 authors = ["michal <michal@tar.black>"]
 edition = "2021"
+license = "GPL-3.0"
 
 [[bin]]
 name = "apd"
