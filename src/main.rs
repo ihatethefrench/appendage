@@ -14,7 +14,7 @@ fn write_to_file(file: &str, text: &str, verbose: &bool) -> std::io::Result<()> 
     let mut f = OpenOptions::new().append(true).open(file)?;
 
     if *verbose {
-        strs::debug(&format!("Writing \"{}\"to file {}", &text, &file));
+        strs::debug(&format!("Writing \"{}\" to file {}", &text, &file));
     };
 
     f.write_all(text.as_bytes())?;
