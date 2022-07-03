@@ -12,12 +12,12 @@
       naersk-lib = naersk.lib."${system}";
     in rec
     {
-      packages.appendage = naersk.lib.buildPackage {
+      packages.appendage = naersk-lib.buildPackage {
         pname = "apd";
-        root = "./.";
+        root = ./.;
       };
         
-      defaultPackage = packages.appendage;
+      packages.default = packages.appendage;
         
       apps.appendage = utils.lib.mkApp {
         drv = packages.appendage;  
@@ -25,7 +25,7 @@
         
       apps.default = apps.appendage;
         
-      devShell = pkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
           rustc
           cargo
