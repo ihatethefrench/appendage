@@ -42,7 +42,11 @@ fn main() {
     });
 
     if !args.quiet {
-        strs::info(&format!("Appended \"{}\" to {}", &args.text, &args.file));
+        if args.no_newline {
+            strs::info(&format!("Appended \"{}\" to {} without a newline", &args.text, &args.file));
+        } else {
+            strs::info(&format!("Appended \"{}\" to {}", &args.text, &args.file));
+        }
         std::process::exit(0);
     }
 }
