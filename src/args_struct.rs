@@ -12,18 +12,18 @@ pub struct Args {
     pub text: String,
 
     /// Whether to append with a newline
-    #[clap(name = "No Newline", short = 'n', long = "no-newline")]
+    #[clap(name = "No Newline", short = 'n', long = "no-newline", global = true)]
     pub no_newline: bool,
 
     /// Whether to print debug messages
-    #[clap(name = "Verbose", short = 'v', long = "verbose")]
+    #[clap(name = "Verbose", short = 'v', long = "verbose", global = true)]
     pub verbose: bool,
 
     /// Whether to print anything to stdout
-    #[clap(name = "Quiet", short = 'q', long = "quiet")]
+    #[clap(name = "Quiet", short = 'q', long = "quiet", global = true)]
     pub quiet: bool,
 
     /// Whether to create the file if it doesn't already exist
-    #[clap(name = "Don't Create", short = 'c', long = "no-create")]
+    #[clap(name = "Don't Create", short = 'c', long = "no-create", global = true)]
     pub no_create: bool,
 }
