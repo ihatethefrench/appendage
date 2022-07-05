@@ -2,7 +2,7 @@
 # Developer:  michal <michal[at]tar[dot]black>
 
 pkgname="appendage"
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="Append text to files without all of the hassle"
 arch=('x86_64')
