@@ -22,4 +22,8 @@ pub struct Args {
     /// Whether to print anything to stdout
     #[clap(name = "Quiet", short = 'q', long = "quiet")]
     pub quiet: bool,
+
+    /// Whether to create the file if it doesn't already exist
+    #[clap(name = "Don't Create", short = 'c', long = "no-create")]
+    pub no_create: bool,
 }

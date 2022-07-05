@@ -1,5 +1,6 @@
 use std::fs::OpenOptions;
 use std::io::prelude::*;
+use std::path::Path;
 
 use clap::Parser;
 
@@ -8,13 +9,17 @@ mod strs;
 
 fn write_to_file(file: &str, text: &str, verbose: &bool) -> std::io::Result<()> {
     if *verbose {
-        strs::debug(&format!("Opening file {} for reading", &file));
+        strs::debug(&format!("Opening file {} for writing", &file));
     };
 
     let mut f = OpenOptions::new().append(true).open(file)?;
 
     if *verbose {
-        strs::debug(&format!("Writing \"{}\" to file {}", &text, &file));
+        if text == "\n" {
+            strs::debug(&format!("Appending newline to file {}", &file));
+        } else {
+            strs::debug(&format!("Appending \"{}\" to file {}", &text, &file));
+        }
     };
 
     f.write_all(text.as_bytes())?;
@@ -29,8 +34,31 @@ fn main() {
         strs::debug(&format!("{:?}", &args));
     }
 
+    if !args.no_create {
+        if !Path::new(&args.file).exists() {
+            if args.verbose {
+                strs::debug(&format!("Creating file {}", &args.file));
+            }
+            std::fs::File::create(&args.file).unwrap_or_else(|err| {
+                strs::error(&format!("Could not create file, {}", err));
+                std::process::exit(3);
+            });
+        };
+    }
+
+    let newline = if std::fs::metadata(&args.file).unwrap_or_else(
+        |err| {
+            strs::error(&format!("Could not get metadata for file, {}", err));
+            std::process::exit(2);
+        }
+    ).len() == 0 {
+        ""
+    } else {
+        "\n"
+    };
+
     if !args.no_newline {
-        write_to_file(&args.file, "\n", &args.verbose).unwrap_or_else(|err| {
+        write_to_file(&args.file, newline, &args.verbose).unwrap_or_else(|err| {
             strs::error(&format!("Could not write to file, {}", err));
             std::process::exit(1);
         });
